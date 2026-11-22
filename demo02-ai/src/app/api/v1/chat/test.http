@@ -1,0 +1,8 @@
+POST http://127.0.0.1:3000/api/v1/chat
+Content-Type: application/json
+
+{
+  "messages": [
+    {"parts":[{"type":"text","text":"hello"}],"id":"C59WYONP7uCSgltC","role":"user"}
+  ]
+}
