@@ -126,4 +126,11 @@
   html {
     @apply font-sans;
     }
+  /* Tailwind preflight 重置了 h1 的浏览器默认样式，这里恢复原生 HTML 的 h1 效果 */
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    line-height: normal;
+    margin-block: 0.67em;
+    }
 }
