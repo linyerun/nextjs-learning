@@ -1,5 +1,12 @@
 import { Suspense } from "react";
 
+/**
+ * prerender动态内容展示
+ * 适用场景：fetch请求、cookies、headers等动态数据
+ *
+ * 动态内容必须配合Suspense、或者加loading.tsx使用
+ * */
+
 const DynamicComp = async function () {
   //这个接口随机返回一个二次元图片
   // const randomImage = await fetch("https://www.loliapi.com/acg/pc?type=json");
