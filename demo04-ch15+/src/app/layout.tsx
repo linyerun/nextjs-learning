@@ -26,6 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         {children}
+        {/* Vue 的挂载点，layout 里的内联脚本会 mount 到这里 */}
+        <div id="app"></div>
         {/*全局引入, 放在其他page里面就属于局部引入了; beforeInteractive 会被 Next.js 注入到 <head> 并在 hydration 前执行, 保证下面的内联脚本能拿到 Vue*/}
         <Script
           id="1111"
