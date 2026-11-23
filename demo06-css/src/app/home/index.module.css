@@ -1,0 +1,5 @@
+/*CSS Modules 是一种 CSS 模块化方案，可以让你在组件中使用CSS模块化，类似于Vue的单文件组件(scoped)。*/
+
+.container {
+    background-color: red;
+}
