@@ -1,0 +1,33 @@
+### 创建用户
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "test",
+  "email": "1test@test.com",
+  "password": "123456"
+}
+
+### 查询所有用户
+GET http://localhost:3000/api/v1/users
+
+### 查询单个用户
+GET http://localhost:3000/api/v1/users/cmwu3u5x20000er3ge07qznoq
+
+### 更新用户
+PUT http://localhost:3000/api/v1/users/cmwu3u5x20000er3ge07qznoq
+Content-Type: application/json
+
+{
+  "name": "lyr",
+  "email": "lyr@qq.com",
+  "password": "12345678"
+}
+
+### 删除用户
+DELETE http://localhost:8888/api
+Content-Type: application/json
+
+{
+  "id": "cmkyoxflr00004ck82ywc6joi"
+}

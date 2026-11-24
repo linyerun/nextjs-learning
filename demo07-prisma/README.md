@@ -49,9 +49,17 @@ model Post {
 ```
 
 ```bash
-# 执行该脚本生成ts代码
+# 只根据 schema 生成类型安全的客户端
 prisma generate
+
+# 直接把 schema 同步成数据库表，不记录迁移历史
+prisma db push
+
+# 反向操作：把已有数据库结构拉成 schema
+prisma db pull
 ```
+
+
 
 ---
 
