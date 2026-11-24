@@ -7,21 +7,28 @@ import {
 } from "ai";
 import { createDeepSeek } from "@ai-sdk/deepseek";
 
-// .env 必须放在项目根目录（demo02-ai/.env），Next 不会读取 src 下的 .env
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
-if (!DEEPSEEK_API_KEY) {
-  throw new Error("缺少 DEEPSEEK_API_KEY，请在项目根目录 .env 中配置");
-}
+// 延迟到请求时读取密钥：容器构建阶段不需要密钥，运行时由环境变量注入
+let deepSeek: ReturnType<typeof createDeepSeek> | undefined;
 
-const deepSeek = createDeepSeek({
-  apiKey: DEEPSEEK_API_KEY, //设置API密钥
-});
+function getDeepSeek() {
+  if (!deepSeek) {
+    // .env 必须放在项目根目录（demo02-ai/.env），Next 不会读取 src 下的 .env
+    const apiKey = process.env.DEEPSEEK_API_KEY;
+    if (!apiKey) {
+      throw new Error("缺少 DEEPSEEK_API_KEY，请在 .env 或容器环境变量中配置");
+    }
+    deepSeek = createDeepSeek({
+      apiKey, //设置API密钥
+    });
+  }
+  return deepSeek;
+}
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json(); //获取请求体
   //这里为什么接受messages 因为我们使用前端的useChat 他会自动注入这个参数，所有可以直接读取
   const result = streamText({
-    model: deepSeek("deepseek-flash"), //使用deepseek-flash模型
+    model: getDeepSeek()("deepseek-flash"), //使用deepseek-flash模型
     //新版 convertToModelMessages 是异步的，必须 await
     //前端传过来的messages不符合sdk格式，转换后：
     //[{ role: 'user', content: [{ type: 'text', text: '...' }] }, ...]
