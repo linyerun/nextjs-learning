@@ -55,6 +55,10 @@ prisma generate
 # 直接把 schema 同步成数据库表，不记录迁移历史
 prisma db push
 
+# 功能和 push一样,根据shema生成数据库表,但它更安全有记录
+# 在开发环境中，根据当前 schema.prisma 创建并应用一条名为 init 的数据库迁移
+prisma migrate dev --name init
+
 # 反向操作：把已有数据库结构拉成 schema
 prisma db pull
 ```
